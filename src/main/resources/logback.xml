@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="logPath" value="~/web/k8s/demo/logs/" />
+	<property name="logLevel" value="info" />
+	<property name="outPattern"
+			  value="[%-5p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C] - %m%n" />
+	<property name="maxHistory" value="10" />
+	<!-- logback -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${outPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logPath}/demo.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logPath}/demo.log.%d{yyyy-MM-dd}
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${outPattern}</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>512</queueSize>
+		<appender-ref ref="FILE" />
+	</appender>
+
+	<root level="${logLevel}">
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
