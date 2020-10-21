@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<property name="logPath" value="~/web/k8s/demo/logs/" />
+	<property name="logPath" value="/web/k8s/demo/logs/" />
 	<property name="logLevel" value="info" />
 	<property name="outPattern"
 			  value="[%-5p] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] [%C] - %m%n" />
